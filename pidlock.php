@@ -1,7 +1,7 @@
-	function lock()
+	function lock($name='pidlock')
 	{
 		$res = true;
-		$fn = '/tmp/event_queue.lock';
+		$fn = '/tmp/'.$name.'.lock';
 		$pid = getmypid();
 		try {
 			// try to put the lock
@@ -18,7 +18,7 @@
 				if (!file_exists($link)) {
 					// There is no target of the link
 					// Let's remove it and try again
-					unlink($fn);
+					@unlink($fn);
 					if (@symlink('/proc/'.$pid, $fn) !== false) {
 						throw new Exception('Lock succeed', 100);
 					}
@@ -47,8 +47,8 @@
 		return $res;
 	}
 
-	function unlock()
+	function unlock($name='pidlock')
 	{
-		$fn = '/tmp/event_queue.lock';
-		unlink ($fn);
+		$fn = '/tmp/'.$pidlock.'.lock';
+		@unlink ($fn);
 	}
