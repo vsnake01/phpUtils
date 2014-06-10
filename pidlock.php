@@ -1,4 +1,13 @@
-	function lock($name='pidlock')
+/**
+ * Class PidLock
+ */
+class PidLock
+{	
+	/**
+	 * @param string $name Name of process to lock. "pidlock" by default.
+	 * @return bool True on success, False on error
+	 */
+	static function lock($name='pidlock')
 	{
 		$res = true;
 		$fn = '/tmp/'.$name.'.lock';
@@ -46,8 +55,12 @@
 		return $res;
 	}
 
-	function unlock($name='pidlock')
+	/**
+	 * @param string $name Name of process to unlock. "pidlock" by default
+	 */
+	static function unlock($name='pidlock')
 	{
 		$fn = '/tmp/'.$pidlock.'.lock';
 		@unlink ($fn);
 	}
+}
