@@ -38,7 +38,6 @@
 			throw new Exception('Lock failed. Undetectable.', -600);
 
 		} catch (Exception $e) {
-			$this->logger->debug($e->getMessage());
 			if ($e->getCode()<0) {
 				$res = false;
 			}
