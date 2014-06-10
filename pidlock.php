@@ -1,4 +1,6 @@
-namespace phpUtils
+<?php
+
+namespace phpUtils;
 
 /**
  * Class PidLock
